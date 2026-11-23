@@ -7,5 +7,6 @@ partidi/*/video/*.mp4
 partidi/*/video/*.mp3
 partidi/*/video/_rabota/
 partidi/*/surovo/
+partidi/*/snimki/
 snimki/*
 !snimki/README.md

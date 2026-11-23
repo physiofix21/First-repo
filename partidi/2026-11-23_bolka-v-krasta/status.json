@@ -1,0 +1,29 @@
+{
+  "partida": "2026-11-23_bolka-v-krasta",
+  "tema": "болка в кръста",
+  "sazdadena": "2026-11-23T09:13:00",
+  "etapi": {
+    "brif": null,
+    "matrica": null,
+    "stop_a": null,
+    "banneri": {
+      "koga": "2026-11-23T09:15:44",
+      "info": {
+        "broi": 12,
+        "formati": [
+          "1x1",
+          "4x5",
+          "9x16"
+        ]
+      }
+    },
+    "video": null,
+    "kopi": {
+      "koga": "2026-11-23T09:13:24",
+      "info": true
+    },
+    "stop_b": null,
+    "kachena": null,
+    "pusnata": null
+  }
+}

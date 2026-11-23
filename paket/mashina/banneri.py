@@ -12,6 +12,7 @@
 """
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
@@ -36,11 +37,11 @@ def _hex(c: str) -> tuple[int, int, int]:
     return tuple(int(c[i:i + 2], 16) for i in (0, 2, 4))
 
 
-def _cover(snimka: Path | None, w: int, h: int, fon: str) -> Image.Image:
+def _cover(snimka: Path | None, w: int, h: int, fon: str, fokus=(0.5, 0.4)) -> Image.Image:
     if snimka and Path(snimka).exists():
         im = Image.open(snimka)
         im = ImageOps.exif_transpose(im).convert("RGB")
-        return ImageOps.fit(im, (w, h), Image.LANCZOS, centering=(0.5, 0.4))
+        return ImageOps.fit(im, (w, h), Image.LANCZOS, centering=tuple(fokus))
     # без снимка: фон на марката с мек градиент
     baza = Image.new("RGB", (w, h), _hex(fon))
     return baza
@@ -63,10 +64,14 @@ def _gradient(w: int, h: int, ot: float, cvqt=(0, 0, 0), sila=220, nagore=False)
 
 
 def _dumi_s_akcent(tekst: str, akcent: str | None) -> list[tuple[str, bool]]:
-    dumi = tekst.split()
+    # „8 часа“, „5 звезди“: числото не остава само на реда
+    tekst = re.sub(r"(?<!\S)(\d+[.,]?\d*) (\S)", "\\1\u00a0\\2", tekst)
+    if akcent:
+        akcent = re.sub(r"(?<!\S)(\d+[.,]?\d*) (\S)", "\\1\u00a0\\2", akcent)
+    dumi = tekst.split(" ")
     marki = [False] * len(dumi)
     if akcent:
-        ad = akcent.lower().split()
+        ad = akcent.lower().split(" ")
         for i in range(len(dumi) - len(ad) + 1):
             if [d.lower().strip(",.!?:;„“\"") for d in dumi[i:i + len(ad)]] == [a.strip(",.!?:;„“\"") for a in ad]:
                 for j in range(i, i + len(ad)):
@@ -154,8 +159,11 @@ def _hapche_y(h, fmt, razmer=44):
     return h - BEZOPASNO[fmt][1] - HAPCHE_VIS.get(razmer, int(razmer * 1.9))
 
 
-def _logo(d, ime, x, y, cvqt, cfg):
+def _logo(d, ime, x, y, cvqt, cfg, podlozhka=None):
     font = _font(cfg.get("marka", "shrift_zaglavie"), 34)
+    if podlozhka:
+        tw = font.getlength(ime)
+        d.rounded_rectangle((x - 18, y - 10, x + tw + 18, y + 48), radius=29, fill=podlozhka)
     d.text((x, y), ime, font=font, fill=cvqt)
 
 
@@ -185,8 +193,9 @@ def _snimka(b, fmt, cfg, im):
     gore, dolu = BEZOPASNO[fmt]
     m = cfg["marka"]
     im = im.convert("RGBA")
-    im.alpha_composite(Image.new("RGBA", (w, h), (0, 0, 0, 60)))
-    im.alpha_composite(_gradient(w, h, 0.62, sila=245, nagore=True))
+    im.alpha_composite(Image.new("RGBA", (w, h), (0, 0, 0, 70)))
+    im.alpha_composite(_gradient(w, h, 0.72, sila=250, nagore=True))
+    im.alpha_composite(_gradient(w, h, 0.40, sila=120, nagore=True))
     im.alpha_composite(_gradient(w, h, 0.65, sila=190))
     d = ImageDraw.Draw(im)
     _logo(d, cfg["biznes"]["ime"], POLE, gore, m["cvqt_tekst_svetal"], cfg)
@@ -208,7 +217,7 @@ def _bolka(b, fmt, cfg, im):
     platno.paste(snimka, (0, 0))
     d = ImageDraw.Draw(platno)
     d.rectangle((0, panel_y - 10, w, panel_y), fill=m["cvqt_akcent"])
-    _logo(d, cfg["biznes"]["ime"], POLE, gore, m["cvqt_tekst_svetal"], cfg)
+    _logo(d, cfg["biznes"]["ime"], POLE, gore, m["cvqt_tekst_svetal"], cfg, podlozhka=m["cvqt_osnoven"])
     hy = _hapche_y(h, fmt, 40)
     pod = 110 if b.get("podzaglavie") else 0
     vis_panel = hy - (panel_y + 44) - pod - 36
@@ -339,7 +348,8 @@ def napravi(b: dict, fmt: str, cfg, papka_snimki: Path, izhod: Path) -> Path:
             snimka = papka_snimki / snimka
         if not snimka.exists():
             raise MashinaGreshka(f"Банер {b.get('kod')}: няма снимка {snimka}")
-    im = _cover(snimka, w, h, cfg["marka"]["cvqt_osnoven"])
+    # fokus = [x, y] от 0 до 1: коя част от снимката остава при изрязване (ръцете, лицето)
+    im = _cover(snimka, w, h, cfg["marka"]["cvqt_osnoven"], b.get("fokus") or (0.5, 0.4))
     gotov = OFORMLENIA[oformlenie](b, fmt, cfg, im).convert("RGB")
     izhod.parent.mkdir(parents=True, exist_ok=True)
     gotov.save(izhod, "PNG", optimize=True)
