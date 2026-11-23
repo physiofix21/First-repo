@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+# тежките файлове на партидите стоят локално; в git остават планът, текстовете и решенията
+partidi/*/banneri/*.png
+partidi/*/video/*.mp4
+partidi/*/video/*.mp3
+partidi/*/video/_rabota/
+partidi/*/surovo/
+snimki/*
+!snimki/README.md

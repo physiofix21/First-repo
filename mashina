@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Командата на машината. Пример: ./mashina doktor
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PYTHONPATH="$DIR/paket${PYTHONPATH:+:$PYTHONPATH}" exec python3 -m mashina "$@"
