@@ -3,9 +3,29 @@
   "tema": "болка в кръста",
   "sazdadena": "2026-11-23T09:13:00",
   "etapi": {
-    "brif": null,
-    "matrica": null,
-    "stop_a": null,
+    "brif": {
+      "koga": "2026-11-23T14:39:27",
+      "info": true
+    },
+    "matrica": {
+      "koga": "2026-11-23T14:39:27",
+      "info": true
+    },
+    "stop_a": {
+      "koga": "2026-11-23T14:39:27",
+      "info": {
+        "ai_snimki": 0,
+        "tvoi_snimki": 11,
+        "ai_sekundi_video": 0.0,
+        "glasove": 0,
+        "generirane": 0.0,
+        "generirane_s_rezerv": 0.0,
+        "reklama_na_den": 12.0,
+        "reklama_obshto": 168.0,
+        "dni": 14,
+        "obshto": 168.0
+      }
+    },
     "banneri": {
       "koga": "2026-11-23T09:37:44",
       "info": {
