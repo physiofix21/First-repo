@@ -13,3 +13,4 @@ partidi/*/surovo/
 partidi/*/snimki/
 snimki/*
 !snimki/README.md
+partidi/*/*.zip

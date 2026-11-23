@@ -69,7 +69,7 @@
           "hapche": ""
         }
       ],
-      "video": [
+      "video_otlozheno": [
         {
           "kod": "AV1",
           "huk": "Седенето не е проблемът. Ето кой е.",
@@ -93,7 +93,8 @@
           "subtitri": [],
           "priziv_akcent": "Пиши ни"
         }
-      ]
+      ],
+      "video": []
     },
     {
       "kod": "B",
@@ -158,7 +159,7 @@
           "hapche": ""
         }
       ],
-      "video": [
+      "video_otlozheno": [
         {
           "kod": "BV1",
           "huk": "5.0 в Google. Ето защо.",
@@ -182,7 +183,8 @@
           "subtitri": [],
           "priziv_akcent": "Пиши ни"
         }
-      ]
+      ],
+      "video": []
     },
     {
       "kod": "C",
@@ -251,7 +253,7 @@
           "hapche": ""
         }
       ],
-      "video": [
+      "video_otlozheno": [
         {
           "kod": "CV1",
           "huk": "Какво става на първия час за кръста?",
@@ -275,7 +277,8 @@
           "subtitri": [],
           "priziv_akcent": "Пиши ни"
         }
-      ]
+      ],
+      "video": []
     }
   ],
   "kopi": {

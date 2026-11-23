@@ -236,7 +236,8 @@ def cmd_meta(a, cfg):
     from .meta import kachi, napravi_plan, pokazhi_plan
     p = _p(a.partida)
     if a.plan or not (a.da or a.kachi):
-        for etap in ("banneri", "video", "kopi"):
+        ima_video = any(True for _ in P.vsichki_video(P.matrica(p)))
+        for etap in ("banneri", "video", "kopi") if ima_video else ("banneri", "kopi"):
             P.iziskvai(p, etap, "Планът се прави, когато банерите, видеата и текстовете са готови и проверени.")
         plan = napravi_plan(p, cfg)
         pishi_json(p / "meta-plan.json", plan)

@@ -35,7 +35,7 @@ popalneno                = false  # сложи true, когато числата
 [test]
 adseta                   = 3      # ъгли = ad set-ове
 banera_na_adset          = 4
-video_na_adset           = 1
+video_na_adset           = 0      # засега само статични банери; 1 = по едно видео на ad set
 dneven_budjet_na_adset   = 4.0    # € на ден на ad set (ABO). 3 × 4 € = 12 €/ден за Meta
 den_pusk                 = "понеделник"
 dni_na_test              = 14

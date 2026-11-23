@@ -1,0 +1,154 @@
+{
+  "kampania": "PF · болка в кръста · 2026-11-23",
+  "tip": "ABO",
+  "cel": "messages",
+  "destinacia": "MESSENGER",
+  "status": "PAUSED",
+  "tekstove": "variacii",
+  "auditoria": {
+    "centar": [
+      42.145,
+      24.748
+    ],
+    "radius_km": 15,
+    "vazrast": [
+      25,
+      65
+    ]
+  },
+  "adseti": [
+    {
+      "kod": "A",
+      "ime": "PF · A · болка · кръст след седене",
+      "dneven_budjet": 4.0,
+      "reklami": [
+        {
+          "kod": "A1",
+          "vid": "banner",
+          "fail": "banneri/A1_4x5.png",
+          "ime": "PF_bolkavkrasta_A1_snimka_v1",
+          "tekst_index": 0
+        },
+        {
+          "kod": "A2",
+          "vid": "banner",
+          "fail": "banneri/A2_4x5.png",
+          "ime": "PF_bolkavkrasta_A2_bolka_v1",
+          "tekst_index": 1
+        },
+        {
+          "kod": "A3",
+          "vid": "banner",
+          "fail": "banneri/A3_4x5.png",
+          "ime": "PF_bolkavkrasta_A3_bolka_v1",
+          "tekst_index": 2
+        },
+        {
+          "kod": "A4",
+          "vid": "banner",
+          "fail": "banneri/A4_4x5.png",
+          "ime": "PF_bolkavkrasta_A4_snimka_v1",
+          "tekst_index": 3
+        }
+      ]
+    },
+    {
+      "kod": "B",
+      "ime": "PF · B · доказателство · 5.0 в Google",
+      "dneven_budjet": 4.0,
+      "reklami": [
+        {
+          "kod": "B1",
+          "vid": "banner",
+          "fail": "banneri/B1_4x5.png",
+          "ime": "PF_bolkavkrasta_B1_dokazatelstvo_v1",
+          "tekst_index": 0
+        },
+        {
+          "kod": "B2",
+          "vid": "banner",
+          "fail": "banneri/B2_4x5.png",
+          "ime": "PF_bolkavkrasta_B2_dokazatelstvo_v1",
+          "tekst_index": 1
+        },
+        {
+          "kod": "B3",
+          "vid": "banner",
+          "fail": "banneri/B3_4x5.png",
+          "ime": "PF_bolkavkrasta_B3_snimka_v1",
+          "tekst_index": 2
+        },
+        {
+          "kod": "B4",
+          "vid": "banner",
+          "fail": "banneri/B4_4x5.png",
+          "ime": "PF_bolkavkrasta_B4_bolka_v1",
+          "tekst_index": 3
+        }
+      ]
+    },
+    {
+      "kod": "C",
+      "ime": "PF · C · механизъм · първият преглед",
+      "dneven_budjet": 4.0,
+      "reklami": [
+        {
+          "kod": "C1",
+          "vid": "banner",
+          "fail": "banneri/C1_4x5.png",
+          "ime": "PF_bolkavkrasta_C1_mehanizam_v1",
+          "tekst_index": 0
+        },
+        {
+          "kod": "C2",
+          "vid": "banner",
+          "fail": "banneri/C2_4x5.png",
+          "ime": "PF_bolkavkrasta_C2_snimka_v1",
+          "tekst_index": 1
+        },
+        {
+          "kod": "C3",
+          "vid": "banner",
+          "fail": "banneri/C3_4x5.png",
+          "ime": "PF_bolkavkrasta_C3_sravnenie_v1",
+          "tekst_index": 2
+        },
+        {
+          "kod": "C4",
+          "vid": "banner",
+          "fail": "banneri/C4_4x5.png",
+          "ime": "PF_bolkavkrasta_C4_bolka_v1",
+          "tekst_index": 3
+        }
+      ]
+    }
+  ],
+  "obshto_reklami": 12,
+  "budjet_na_den": 12.0,
+  "budjet_14_dni": 168.0,
+  "kopi": {
+    "osnovni": [
+      "Болката в кръста след 8 часа седене има причина. На първия час я търсим с тестове и започваме лечението още същия ден.\nПиши ни — ще ти кажем свободен час.",
+      "Цял ден на стола, а вечер кръстът напомня за себе си.\nНа първия час в PhysioFix тестваме движението и търсим причината, не само мястото, което боли. После започваме лечението — още същия час.\nТръгваш с план и упражнения за вкъщи.\n5.0 в Google от 570 души.\nПиши ни — ще ти кажем свободен час.",
+      "„Какво ще правите на първия час?“\nПърво тестове на движението, за да намерим причината. После лечение още същия час. Всяка стъпка ти обясняваме.\nПиши ни — ще ти кажем свободен час.",
+      "„Ако имате проблем с гърба или кръста, няма да сгрешите ако му се доверите“ — пациент за Румен.\n5.0 в Google от 570 души. Рехабилитация в центъра на Пловдив, ул. „Севастопол“ 19.\nПиши ни — ще ти кажем свободен час.",
+      "Какво става на първия час за кръста:\n1) Разговор: кога започна и какво правиш през деня.\n2) Тестове на движението, за да намерим причината.\n3) Лечение още същия час.\n4) План с упражнения за вкъщи.\nПиши ни — ще ти кажем свободен час."
+    ],
+    "zaglaviya": [
+      "Рехабилитация за кръста в Пловдив",
+      "Тестове и лечение още на първия час",
+      "5.0 в Google от 570 души",
+      "Причината, не само болката",
+      "Ясен план от първия час"
+    ],
+    "opisaniya": [
+      "ул. „Севастопол“ 19, Пловдив",
+      "5.0 в Google · 570 отзива",
+      "Пон–пет 08–20 ч.",
+      "Пиши ни за свободен час",
+      "Идваме и у дома"
+    ]
+  },
+  "kampania_id": null,
+  "lipsvat_failove": []
+}
