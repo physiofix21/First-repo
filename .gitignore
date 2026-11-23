@@ -5,6 +5,8 @@ __pycache__/
 partidi/*/banneri/*.png
 partidi/*/video/*.mp4
 partidi/*/video/*.mp3
+partidi/*/video/*.m4a
+partidi/*/video/*.wav
 partidi/*/video/*.jpg
 partidi/*/video/_rabota/
 partidi/*/surovo/

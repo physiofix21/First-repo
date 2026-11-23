@@ -4,7 +4,9 @@
 
 Накрая машината е при теб: в твоята папка, с твоя Claude/Codex, твоя KIE.AI и твоя рекламен акаунт.
 
-**Трябват ти:** Claude Code (или ChatGPT Plus за Codex) · $10 в KIE.AI · рекламен акаунт в Meta · Python 3.11+ и ffmpeg.
+**Трябват ти:** Claude Code · рекламен акаунт в Meta · Python 3.11+ и ffmpeg · снимки от кабинета · телефон за гласа.
+
+**Безплатен режим (по подразбиране):** без KIE.AI. Единственият разход е бюджетът на рекламата в Meta, който решаваш ти. KIE.AI ($10) се включва по желание: `biznes.toml → [kie] vkluchen = true`.
 
 ---
 
@@ -19,7 +21,7 @@
 ```
 
 ### 02 · Настройката
-AI-ят: зарежда skill **start**. Ти: ключовете за KIE.AI и Meta в `.env`.
+AI-ят: зарежда skill **start**. Ти: ключът за Meta в `.env` (KIE.AI само ако го включиш).
 ✅ Готово, когато `./mashina doktor` казва **„Всичко е наред.“**
 
 ## ЧАСТ 1 · П1 · Продуктът и брифът
@@ -44,10 +46,10 @@ AI-ят: skill **brif**. ✅ `partidi/<дата>_<тема>/brif.md` с 3–5 ъ
 `./mashina smetka` → точната цена. Твоето „да“ → `./mashina smetka --da`.
 
 ### 08 · Банерите
-`./mashina kie snimki` → `./mashina banneri`. 12 банера × 3 формата, буква по буква. Skill **banneri**.
+`./mashina banneri` (от твоите снимки). 12 банера × 3 формата, буква по буква. Skill **banneri**.
 
 ### 09 · Видеата
-Глас, кадри, субтитри и монтаж: `./mashina kie glas` → `kie kadri` → `./mashina video`. Skill **video**.
+Гласът: четеш `tekstove-za-chetene.md` на телефона → `./mashina video` сглобява кадри, глас и субтитри. Skill **video**.
 
 ### 10 · Текстовете 5/5/5
 5 основни текста, 5 заглавия, 5 описания: `./mashina kopi`. Skill **kopi-555**.

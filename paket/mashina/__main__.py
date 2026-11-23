@@ -108,6 +108,9 @@ def cmd_smetka(a, cfg):
 
 def cmd_kie(a, cfg):
     from .kie import Kie
+    if not cfg.get("kie", "vkluchen", False):
+        raise MashinaGreshka("KIE.AI е изключен (безплатен режим). Гласът: запиши го с телефона → video/<код>_glas.m4a. "
+                             "За да го включиш: biznes.toml → [kie] vkluchen = true.")
     k = Kie(cfg)
     if a.deistvie == "krediti":
         print(f"KIE.AI: {k.krediti():.0f} кредита")

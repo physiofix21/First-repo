@@ -200,3 +200,35 @@ class Cli(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class GlasOtTelefona(unittest.TestCase):
+    """Безплатният режим: гласът е m4a от iPhone."""
+
+    def test_m4a(self):
+        if not shutil.which("ffmpeg"):
+            self.skipTest("няма ffmpeg")
+        from PIL import Image
+        from mashina import video
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            (tmp / "video").mkdir()
+            Image.new("RGB", (800, 600), "#556655").save(tmp / "f.jpg")
+            subprocess.run(["ffmpeg", "-loglevel", "error", "-f", "lavfi", "-i", "sine=frequency=200:duration=4",
+                            "-c:a", "aac", str(tmp / "video" / "T1_glas.m4a")], check=True)
+            self.assertEqual(video.nameri_glas(tmp, "T1").suffix, ".m4a")
+            v = {"kod": "T1", "glas_tekst": "Една две три четири пет шест", "priziv": "Запиши час",
+                 "kadri": [{"fail": "f.jpg", "sek": 1}]}
+            izhod = video.sglobi(v, tmp, CFG)
+            r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a", "-show_entries", "stream=codec_name",
+                                "-of", "csv=p=0", str(izhod)], capture_output=True, text=True)
+            self.assertIn("aac", r.stdout)
+            self.assertGreaterEqual(video.prodalzhitelnost(izhod), 4.0)
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def test_kie_izklyuchen(self):
+        self.assertFalse(CFG.get("kie", "vkluchen", True))
+        r = subprocess.run([str(KOREN / "mashina"), "kie", "krediti"], capture_output=True, text=True)
+        self.assertEqual(r.returncode, 2)
+        self.assertIn("безплатен режим", r.stderr)

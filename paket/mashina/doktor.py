@@ -54,12 +54,16 @@ def proveri(cfg, mrezha: bool = True) -> tuple[list[str], int]:
     env = cfg.env
     if not (KOREN / ".env").exists():
         lose("няма .env — копирай .env.example като .env")
-    for k in ("KIE_API_KEY", "META_ACCESS_TOKEN", "META_AD_ACCOUNT_ID", "META_PAGE_ID"):
+    kie_vkl = cfg.get("kie", "vkluchen", False)
+    kluchove = ["META_ACCESS_TOKEN", "META_AD_ACCOUNT_ID", "META_PAGE_ID"] + (["KIE_API_KEY"] if kie_vkl else [])
+    for k in kluchove:
         ok(f"{k} е попълнен") if env.get(k) and env.get(k) != "act_" else lose(f"{k} липсва")
+    if not kie_vkl:
+        ok("KIE.AI е изключен (безплатен режим): гласът е запис от телефона, снимките са твои")
 
     if mrezha:
         redove.append("Връзки")
-        if env.get("KIE_API_KEY"):
+        if kie_vkl and env.get("KIE_API_KEY"):
             try:
                 from .kie import Kie
                 kr = Kie(cfg).krediti()

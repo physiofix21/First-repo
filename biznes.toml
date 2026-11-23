@@ -56,6 +56,7 @@ radius_km           = 15
 # ── KIE.AI: генериране на снимки, видео и глас ───────────────
 # Ключът е в .env (KIE_API_KEY). Моделите могат да се сменят тук без код.
 [kie]
+vkluchen         = false   # false = безплатен режим: без KIE.AI; гласът е запис от телефона, снимките са твои
 api_url          = "https://api.kie.ai"
 model_snimka     = "google/nano-banana"          # банери/фонове (поддържа текст на кирилица)
 model_redakcia   = "google/nano-banana-edit"     # банер от твоя истинска снимка

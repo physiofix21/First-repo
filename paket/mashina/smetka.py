@@ -21,6 +21,8 @@ def presmetni(p: Path, cfg) -> dict:
                 ai_sekundi += float(k.get("sek", 8))
         if v.get("glas_tekst"):
             glasove += 1
+    if not cfg.get("kie", "vkluchen", False):
+        c = {}
     generirane = (ai_snimki * c.get("snimka_ai", 0) + ai_sekundi * c.get("video_sekunda_ai", 0)
                   + glasove * c.get("glas_tts", 0))
     # резерв 30% за повторения (буква не е наред, кадър не става)
@@ -49,6 +51,8 @@ def proveri_matrica(p: Path, cfg) -> list[Zabelezhka]:
             continue
         if not b.get("oformlenie"):
             zab.append(Zabelezhka("greshka", f"банер {b['kod']}", "няма оформление"))
+        if not b.get("snimka") and b.get("prompt_snimka") and not cfg.get("kie", "vkluchen", False):
+            zab.append(Zabelezhka("greshka", f"банер {b['kod']}", "има само промпт, а KIE.AI е изключен — сложи твоя снимка"))
         if not b.get("snimka") and not b.get("prompt_snimka") and b.get("oformlenie") not in ("sravnenie",):
             zab.append(Zabelezhka("vnimanie", f"банер {b['kod']}", "няма нито снимка, нито промпт — ще е само фон в цвета на марката"))
         zab += proveri_banner(b, cfg)
@@ -68,7 +72,8 @@ def pokazhi(s: dict, p: Path, cfg) -> str:
     redove = [
         "СТОП А · сметката преди парите",
         f"  AI снимки: {s['ai_snimki']} (твои снимки: {s['tvoi_snimki']})",
-        f"  AI видео: {s['ai_sekundi_video']:.0f} сек · озвучавания: {s['glasove']}",
+        f"  AI видео: {s['ai_sekundi_video']:.0f} сек · озвучавания: {s['glasove']}"
+        + ("" if cfg.get("kie", "vkluchen", False) else "  (KIE.AI е изключен: гласът е твой запис → 0 €)"),
         f"  Генериране: ~{s['generirane']:.2f} € (с 30% резерв за повторения: {s['generirane_s_rezerv']:.2f} €)",
         f"  Реклама: {s['reklama_na_den']:.2f} €/ден × {s['dni']} дни = {s['reklama_obshto']:.2f} €",
         f"  ОБЩО за партидата: ~{s['obshto']:.2f} €",

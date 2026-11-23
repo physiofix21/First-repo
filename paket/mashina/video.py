@@ -37,6 +37,18 @@ def prodalzhitelnost(pat: Path) -> float:
         raise MashinaGreshka(f"Не мога да прочета продължителността на {pat}") from None
 
 
+AUDIO = (".mp3", ".m4a", ".wav", ".aac", ".ogg", ".opus", ".mp4", ".mov")
+
+
+def nameri_glas(papka: Path, kod: str) -> Path | None:
+    """Гласът: video/<код>_glas.<всякакъв формат> — запис от телефона (m4a от iPhone) или от KIE (mp3)."""
+    for ext in AUDIO:
+        pat = papka / "video" / f"{kod}_glas{ext}"
+        if pat.exists():
+            return pat
+    return None
+
+
 def _segment(vhod: Path, sek: float, izhod: Path, ot: float = 0.0) -> None:
     mashtab = f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,fps={FPS}"
     if vhod.suffix.lower() in SNIMKI:
@@ -100,8 +112,8 @@ def sglobi(v: dict, papka: Path, cfg) -> Path:
     if not kadri:
         raise MashinaGreshka(f"Видео {v['kod']}: няма кадри. Сложи клипове/снимки в matrica.json → kadri.")
 
-    glas = papka / "video" / f"{v['kod']}_glas.mp3"
-    glas_sek = prodalzhitelnost(glas) if glas.exists() else 0.0
+    glas = nameri_glas(papka, v["kod"])
+    glas_sek = prodalzhitelnost(glas) if glas else 0.0
 
     segmenti = []
     for i, k in enumerate(kadri):
@@ -143,7 +155,7 @@ def sglobi(v: dict, papka: Path, cfg) -> Path:
         filtri.append(f"{posleden}[{i + 1}:v]overlay=0:0:enable='between(t,{s['ot']},{s['do']})'{izh}")
         posleden = izh
     audio_idx = None
-    if glas.exists():
+    if glas:
         audio_idx = len(subt) + 1
         vhodove += ["-i", str(glas)]
 
