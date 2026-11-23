@@ -100,8 +100,11 @@ class SPartida(unittest.TestCase):
         self.patch.start()
         mock.patch.object(partida, "PARTIDI", self.tmp / "partidi").start()
         mock.patch.object(otchet, "OTCHETI", self.tmp / "otcheti").start()
+        self._video_bilo = CFG["test"]["video_na_adset"]
+        CFG["test"]["video_na_adset"] = 1   # пълният път е с видео; само банери е отделен тест
 
     def tearDown(self):
+        CFG["test"]["video_na_adset"] = self._video_bilo
         mock.patch.stopall()
         shutil.rmtree(self.tmp, ignore_errors=True)
 
@@ -162,6 +165,18 @@ class SPartida(unittest.TestCase):
         # качването без Стоп Б е забранено
         with self.assertRaises(config.MashinaGreshka):
             M.kachi(p, CFG)
+
+    def test_samo_banneri(self):
+        CFG["test"]["video_na_adset"] = 0
+        p = partida.nova("само банери", CFG)
+        self._popalni(p)
+        m = partida.matrica(p)
+        self.assertEqual(sum(1 for _ in partida.vsichki_video(m)), 0)
+        for _, b in partida.vsichki_banneri(m):
+            banneri.napravi(b, "4x5", CFG, p, p / "banneri" / f"{b['kod']}_4x5.png")
+        plan = M.napravi_plan(p, CFG)
+        self.assertEqual(plan["obshto_reklami"], 12)
+        self.assertEqual(plan["lipsvat_failove"], [])
 
     def test_otchet_ot_csv(self):
         p = partida.nova("тест отчет", CFG)
