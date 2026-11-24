@@ -136,7 +136,8 @@ class Platno:
         for r in redove:
             d_list.append(r.split())
         vsichki = sum(len(r) for r in d_list)
-        akc = set((akcent or "").lower().split())
+        PUNKT = ".,!?:;„“\"…"
+        akc = {x.strip(PUNKT) for x in (akcent or "").lower().split()}
         font = self.font("shrift_zaglavie", razmer)
         cvqt = cvqt or "#FFFFFF"
         cvqt_a = cvqt_a or self.m["cvqt_akcent"]
@@ -153,7 +154,7 @@ class Platno:
                 start = idx / max(1, vsichki) * 0.55
                 q = _ease((p - start) / 0.18)
                 if q > 0:
-                    boq = cvqt_a if duma.lower().strip(".,!?„“") in akc else cvqt
+                    boq = cvqt_a if duma.lower().strip(PUNKT) in akc else cvqt
                     dw = int(font.getlength(duma)) + 20
                     dh = int(razmer * 1.3)
                     bukva = Image.new("RGBA", (dw, dh), (0, 0, 0, 0))
