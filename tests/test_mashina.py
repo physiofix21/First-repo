@@ -247,3 +247,35 @@ class GlasOtTelefona(unittest.TestCase):
         r = subprocess.run([str(KOREN / "mashina"), "kie", "krediti"], capture_output=True, text=True)
         self.assertEqual(r.returncode, 2)
         self.assertIn("безплатен режим", r.stderr)
+
+
+class Animacia(unittest.TestCase):
+    def test_granici_lepnat_za_pauzite(self):
+        from mashina.animacia import granici_izrechenia
+        tekst = "Първо изречение тук. Второто е малко по-дълго от първото. Край."
+        gr = granici_izrechenia(tekst, 10.0, [2.1, 8.6])
+        self.assertEqual(len(gr), 3)
+        self.assertAlmostEqual(gr[0][1], 2.1)
+        self.assertAlmostEqual(gr[1][1], 8.6)
+        self.assertAlmostEqual(gr[2][1], 10.0)
+
+    def test_kratko_video(self):
+        if not shutil.which("ffmpeg"):
+            self.skipTest("няма ffmpeg")
+        from PIL import Image
+        from mashina import animacia, video
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            (tmp / "video").mkdir()
+            Image.new("RGB", (900, 1200), "#556655").save(tmp / "f.jpg")
+            subprocess.run(["ffmpeg", "-loglevel", "error", "-f", "lavfi", "-i", "sine=frequency=200:duration=3",
+                            "-c:a", "aac", str(tmp / "video" / "T1_glas.m4a")], check=True)
+            v = {"kod": "T1", "glas_tekst": "Едно две три. Четири пет шест.", "priziv": "Запиши час",
+                 "sceni": [{"vid": "tekst", "izr": [0], "redove": ["Едно две"], "akcent": "две"},
+                           {"vid": "klip", "izr": [1], "fail": "k.mp4", "etiketi": ["Тест"]}]}
+            subprocess.run(["ffmpeg", "-loglevel", "error", "-f", "lavfi", "-i", "testsrc=size=640x360:rate=25:duration=2",
+                            "-pix_fmt", "yuv420p", str(tmp / "k.mp4")], check=True)
+            izhod = animacia.sglobi(v, tmp, CFG, log=lambda *a: None)
+            self.assertGreater(video.prodalzhitelnost(izhod), 5.0)
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)

@@ -204,19 +204,26 @@ def cmd_banneri(a, cfg):
 
 
 def cmd_video(a, cfg):
+    from . import animacia
     from .video import sglobi
     p = _p(a.partida)
     m = P.matrica(p)
     n = 0
-    for _, v in P.vsichki_video(m):
+    if a.otlozheni:
+        spisak = [(x, v) for x in m["adseti"] for v in x.get("video_otlozheno", [])]
+    else:
+        spisak = list(P.vsichki_video(m))
+    for _, v in spisak:
         if a.kod and v["kod"] not in a.kod:
             continue
-        izhod = sglobi(v, p, cfg)
+        # със „sceni“ → анимирано видео; иначе → снимки с приближаване
+        izhod = animacia.sglobi(v, p, cfg) if v.get("sceni") else sglobi(v, p, cfg)
         n += 1
         print(f"  ✓ {v['kod']} → {izhod.relative_to(p)}")
-    vse = sum(1 for _ in P.vsichki_video(m))
-    if all((p / "video" / f"{v['kod']}.mp4").exists() for _, v in P.vsichki_video(m)):
-        P.otbeleji(p, "video", {"broi": vse})
+    if not a.otlozheni:
+        vse = sum(1 for _ in P.vsichki_video(m))
+        if all((p / "video" / f"{v['kod']}.mp4").exists() for _, v in P.vsichki_video(m)):
+            P.otbeleji(p, "video", {"broi": vse})
     print(f"✓ {n} видеа")
 
 
@@ -307,7 +314,8 @@ def main(argv=None):
     s.add_argument("--kod", nargs="*"); s.set_defaults(f=cmd_kie)
     s = sub.add_parser("banneri"); s.add_argument("partida", nargs="?"); s.add_argument("--formati", default="1x1,4x5,9x16")
     s.add_argument("--kod", nargs="*"); s.set_defaults(f=cmd_banneri)
-    s = sub.add_parser("video"); s.add_argument("partida", nargs="?"); s.add_argument("--kod", nargs="*"); s.set_defaults(f=cmd_video)
+    s = sub.add_parser("video"); s.add_argument("partida", nargs="?"); s.add_argument("--kod", nargs="*")
+    s.add_argument("--otlozheni", action="store_true", help="видеата, отложени за вълна 2"); s.set_defaults(f=cmd_video)
     s = sub.add_parser("kopi"); s.add_argument("partida", nargs="?"); s.set_defaults(f=cmd_kopi)
     s = sub.add_parser("meta"); s.add_argument("partida", nargs="?")
     s.add_argument("--plan", action="store_true"); s.add_argument("--da", action="store_true"); s.add_argument("--kachi", action="store_true")

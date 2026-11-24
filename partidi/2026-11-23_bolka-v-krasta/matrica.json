@@ -104,7 +104,98 @@
             "kak": "ElevenLabs → History → свали mp3 → video/AV1_glas.mp3 → ./mashina video",
             "belezhka": "ударения: „Седе́нето“, „часа́“",
             "izbran": "YThKjDZvwWkQFxCcqJDm"
-          }
+          },
+          "sceni": [
+            {
+              "vid": "tekst",
+              "izr": [
+                0
+              ],
+              "redove": [
+                "Седенето",
+                "не е проблемът."
+              ],
+              "akcent": "Седенето"
+            },
+            {
+              "vid": "tekst",
+              "izr": [
+                1
+              ],
+              "fon": "akcent",
+              "redove": [
+                "Цял ден",
+                "без движение"
+              ],
+              "akcent": "без движение"
+            },
+            {
+              "vid": "brojach",
+              "izr": [
+                2
+              ],
+              "ot": 0,
+              "do": 8,
+              "edinica": "часа",
+              "nadpis": "на стола",
+              "nadpis_akcent": "стола"
+            },
+            {
+              "vid": "anatomia",
+              "izr": [
+                3
+              ],
+              "dyal": [
+                0,
+                0.45
+              ],
+              "fail": "snimki/ai_grabnak.png",
+              "fokus": [
+                0.5,
+                0.55
+              ],
+              "tochka": [
+                0.5,
+                0.66
+              ],
+              "etiket": "Намираме причината"
+            },
+            {
+              "vid": "snimka",
+              "izr": [
+                3
+              ],
+              "dyal": [
+                0.45,
+                1
+              ],
+              "fail": "snimki/IMG_6800.jpg",
+              "fokus": [
+                0.47,
+                0.5
+              ],
+              "etiketi": [
+                "Тестове на движението",
+                "Лечение още същия час"
+              ]
+            },
+            {
+              "vid": "snimka",
+              "izr": [
+                4,
+                5
+              ],
+              "fail": "snimki/IMG_6738.jpg",
+              "fokus": [
+                0.55,
+                0.5
+              ],
+              "etiketi": [
+                "Упражнения за вкъщи"
+              ],
+              "nomera": false
+            }
+          ]
         }
       ],
       "video": []
