@@ -91,7 +91,17 @@
             }
           ],
           "subtitri": [],
-          "priziv_akcent": "Пиши ни"
+          "priziv_akcent": "Пиши ни",
+          "glas_elevenlabs": {
+            "glas": "andrey dimitrov (tillyJfYeL33BLuvtLop)",
+            "model": "eleven_multilingual_v2",
+            "flow": "https://elevenlabs.io/app/flows/Pc0zedjmXtL9rx6ES72c",
+            "istoria": [
+              "Rd6pNCcQeRfZovKj5Yuf",
+              "nNtyBYn4mfrJoDEFKWVB"
+            ],
+            "kak": "ElevenLabs → History → свали mp3 → video/AV1_glas.mp3 → ./mashina video"
+          }
         }
       ],
       "video": []
@@ -181,7 +191,17 @@
             }
           ],
           "subtitri": [],
-          "priziv_akcent": "Пиши ни"
+          "priziv_akcent": "Пиши ни",
+          "glas_elevenlabs": {
+            "glas": "andrey dimitrov (tillyJfYeL33BLuvtLop)",
+            "model": "eleven_multilingual_v2",
+            "flow": "https://elevenlabs.io/app/flows/Pc0zedjmXtL9rx6ES72c",
+            "istoria": [
+              "OXtKmkkCOIjK47xegAi3",
+              "QAn3n9ZHgd4ywWozsG70"
+            ],
+            "kak": "ElevenLabs → History → свали mp3 → video/BV1_glas.mp3 → ./mashina video"
+          }
         }
       ],
       "video": []
@@ -275,7 +295,16 @@
             }
           ],
           "subtitri": [],
-          "priziv_akcent": "Пиши ни"
+          "priziv_akcent": "Пиши ни",
+          "glas_elevenlabs": {
+            "glas": "andrey dimitrov (tillyJfYeL33BLuvtLop)",
+            "model": "eleven_multilingual_v2",
+            "flow": "https://elevenlabs.io/app/flows/Pc0zedjmXtL9rx6ES72c",
+            "istoria": [
+              "R1ul5P09WkBicP1GB3Ih"
+            ],
+            "kak": "ElevenLabs → History → свали mp3 → video/CV1_glas.mp3 → ./mashina video"
+          }
         }
       ],
       "video": []
