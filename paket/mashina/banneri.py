@@ -159,6 +159,15 @@ def _hapche_y(h, fmt, razmer=44):
     return h - BEZOPASNO[fmt][1] - HAPCHE_VIS.get(razmer, int(razmer * 1.9))
 
 
+def _telefon(d, cfg, x, y, vis_hapche, cvqt):
+    """Телефонът до бутона „Запиши час“ (marka.telefon_na_banera)."""
+    tel = cfg["biznes"].get("telefon")
+    if not tel or not cfg.get("marka", "telefon_na_banera", True):
+        return
+    font = _font(cfg["marka"]["shrift_tekst"], 40)
+    d.text((x, y + (vis_hapche - 40) / 2 - 4), tel, font=font, fill=cvqt)
+
+
 def _logo(d, ime, x, y, cvqt, cfg, podlozhka=None):
     font = _font(cfg.get("marka", "shrift_zaglavie"), 34)
     if podlozhka:
@@ -203,7 +212,8 @@ def _snimka(b, fmt, cfg, im):
                         m["shrift_zaglavie"], m["cvqt_tekst_svetal"], m["cvqt_akcent"])
     if b.get("podzaglavie"):
         _pishi_tekst(d, b["podzaglavie"], (POLE, y + 14, w - 2 * POLE, 200), m["shrift_tekst"], 40, m["cvqt_tekst_svetal"])
-    _hapche(d, b.get("hapche") or m["hapche_tekst"], POLE, _hapche_y(h, fmt), m["shrift_tekst"], m["cvqt_akcent"], "#FFFFFF")
+    pw, ph = _hapche(d, b.get("hapche") or m["hapche_tekst"], POLE, _hapche_y(h, fmt), m["shrift_tekst"], m["cvqt_akcent"], "#FFFFFF")
+    _telefon(d, cfg, POLE + pw + 28, _hapche_y(h, fmt), ph, m["cvqt_tekst_svetal"])
     return im
 
 
@@ -225,7 +235,8 @@ def _bolka(b, fmt, cfg, im):
                         m["shrift_zaglavie"], m["cvqt_osnoven"], m["cvqt_akcent"], maks=100)
     if b.get("podzaglavie"):
         _pishi_tekst(d, b["podzaglavie"], (POLE, y + 8, w - 2 * POLE, 100), m["shrift_tekst"], 36, m["cvqt_osnoven"])
-    _hapche(d, b.get("hapche") or m["hapche_tekst"], POLE, hy, m["shrift_tekst"], m["cvqt_osnoven"], "#FFFFFF", razmer=40)
+    pw, ph = _hapche(d, b.get("hapche") or m["hapche_tekst"], POLE, hy, m["shrift_tekst"], m["cvqt_osnoven"], "#FFFFFF", razmer=40)
+    _telefon(d, cfg, POLE + pw + 28, hy, ph, m["cvqt_osnoven"])
     return platno
 
 
@@ -255,7 +266,8 @@ def _dokazatelstvo(b, fmt, cfg, im):
     hy = _hapche_y(h, fmt)
     _pishi_zaglavie(d, b["zaglavie"], b.get("akcent"), (POLE, ky + kh + 50, w - 2 * POLE, hy - (ky + kh + 50) - 40),
                     m["shrift_zaglavie"], m["cvqt_tekst_svetal"], m["cvqt_akcent"], maks=92)
-    _hapche(d, b.get("hapche") or m["hapche_tekst"], POLE, hy, m["shrift_tekst"], m["cvqt_akcent"], "#FFFFFF")
+    pw, ph = _hapche(d, b.get("hapche") or m["hapche_tekst"], POLE, hy, m["shrift_tekst"], m["cvqt_akcent"], "#FFFFFF")
+    _telefon(d, cfg, POLE + pw + 28, hy, ph, m["cvqt_tekst_svetal"])
     return im
 
 
@@ -285,7 +297,8 @@ def _mehanizam(b, fmt, cfg, im):
         d.text((POLE + 32 - font_n.getlength(str(i)) / 2, y + 4), str(i), font=font_n, fill="#FFFFFF")
         _pishi_tekst(d, s, (POLE + 90, y + 8, w - 2 * POLE - 90, 80), m["shrift_tekst"], 40, m["cvqt_osnoven"])
         y += 92
-    _hapche(d, b.get("hapche") or m["hapche_tekst"], POLE, hy, m["shrift_tekst"], m["cvqt_osnoven"], "#FFFFFF", razmer=40)
+    pw, ph = _hapche(d, b.get("hapche") or m["hapche_tekst"], POLE, hy, m["shrift_tekst"], m["cvqt_osnoven"], "#FFFFFF", razmer=40)
+    _telefon(d, cfg, POLE + pw + 28, hy, ph, m["cvqt_osnoven"])
     return platno
 
 
@@ -316,7 +329,8 @@ def _sravnenie(b, fmt, cfg, im):
         tekst = b.get(kluch) or ""
         _pishi_zaglavie(d, tekst, None, (POLE + 150, ky + 40, w - 2 * POLE - 190, vis - 80),
                         m["shrift_tekst"], cvqt_t, cvqt_t, maks=56, minimum=30, centar_v=True)
-    _hapche(d, b.get("hapche") or m["hapche_tekst"], POLE, hy, m["shrift_tekst"], m["cvqt_akcent"], "#FFFFFF", razmer=40)
+    pw, ph = _hapche(d, b.get("hapche") or m["hapche_tekst"], POLE, hy, m["shrift_tekst"], m["cvqt_akcent"], "#FFFFFF", razmer=40)
+    _telefon(d, cfg, POLE + pw + 28, hy, ph, m["cvqt_osnoven"])
     return platno
 
 

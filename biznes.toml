@@ -84,6 +84,7 @@ cvqt_tekst_svetal = "#FFFFFF"
 shrift_zaglavie = "Montserrat-Black.ttf"
 shrift_tekst    = "Manrope-Bold.ttf"
 hapche_tekst    = "Запиши час"
+telefon_na_banera = true   # телефонът до бутона на банерите и на крайния кадър на видеата
 
 # ── Правила за текстовете (Meta здравни правила + желания на собственика) ──
 [pravila]
