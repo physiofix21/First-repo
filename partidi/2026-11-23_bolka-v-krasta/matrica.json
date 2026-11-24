@@ -100,7 +100,8 @@
               "Rd6pNCcQeRfZovKj5Yuf",
               "nNtyBYn4mfrJoDEFKWVB"
             ],
-            "kak": "ElevenLabs → History → свали mp3 → video/AV1_glas.mp3 → ./mashina video"
+            "kak": "ElevenLabs → History → свали mp3 → video/AV1_glas.mp3 → ./mashina video",
+            "belezhka": "ударение: седЕнето — в текста за ElevenLabs „Седе́нето“"
           }
         }
       ],
@@ -198,7 +199,8 @@
             "flow": "https://elevenlabs.io/app/flows/Pc0zedjmXtL9rx6ES72c",
             "istoria": [
               "OXtKmkkCOIjK47xegAi3",
-              "QAn3n9ZHgd4ywWozsG70"
+              "QAn3n9ZHgd4ywWozsG70",
+              "YE9q2SsZtWdOin0aaRu1 (570 с цифри)"
             ],
             "kak": "ElevenLabs → History → свали mp3 → video/BV1_glas.mp3 → ./mashina video"
           }
@@ -279,7 +281,7 @@
           "huk": "Какво става на първия час за кръста?",
           "tyalo": "Тестове → лечение още същия час → план.",
           "priziv": "Пиши ни за свободен час",
-          "glas_tekst": "Какво става на първия час за кръста? Първо питаме кога започна и какво правиш през деня. После тестваме движението, за да намерим причината, а не само мястото, което боли. И още същия час започваме лечението. Тръгваш с план и упражнения за вкъщи. Пиши ни и ще ти кажем свободен час.",
+          "glas_tekst": "Какво става на първия час за кръста? Първо питаме кога започна болката и какво правиш през деня. После тестваме движението, за да намерим причината, а не само мястото, което боли. И още същия час започваме лечението. Тръгваш с план и упражнения за вкъщи. Пиши ни и ще ти кажем свободен час.",
           "kadri": [
             {
               "fail": "snimki/IMG_6800.jpg",
@@ -301,7 +303,8 @@
             "model": "eleven_multilingual_v2",
             "flow": "https://elevenlabs.io/app/flows/Pc0zedjmXtL9rx6ES72c",
             "istoria": [
-              "R1ul5P09WkBicP1GB3Ih"
+              "R1ul5P09WkBicP1GB3Ih",
+              "9cnfxLdOY8q65IrU50pP"
             ],
             "kak": "ElevenLabs → History → свали mp3 → video/CV1_glas.mp3 → ./mashina video"
           }
